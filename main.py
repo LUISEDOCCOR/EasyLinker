@@ -1,6 +1,5 @@
 from flask import Flask
 import os
-from dotenv import load_dotenv
 
 app = Flask(__name__)
 
@@ -8,12 +7,6 @@ app = Flask(__name__)
 def index ():
     return "Hello Word"
 
-load_dotenv()
-PORT = None
-if(os.getenv("PORT")):
-    PORT = os.getenv("PORT")
-else:
-    PORT = 3000
 
 if __name__ == "__main__":
-    app.run(port=PORT, debug=True)
+    app.run(port=os.getenv("PORT", default=3000), debug=True)
