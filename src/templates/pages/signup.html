@@ -1,0 +1,32 @@
+{% extends '/Layout.html' %}
+
+{% from '/components/input.html' import input_component %}
+{% from '/components/button.html' import button_component   %}
+{% from '/components/alert.html' import alert_component %}
+
+{% block slot %}
+    <main class="min-h-screen w-full flex flex-col justify-center items-center">
+        {% if error %}
+            {{ alert_component(error) }}
+        {% endif %}
+        <section class="w-full max-w-2xl space-y-8 px-6 mt-24 xl:px-0">
+            <article class="space-y-8">
+                <h1 class="text-5xl font-bold">Bienvendio a EasyLinker</h1>
+                <p class="text-2xl">
+                    EasyLinker te permite crear páginas en menos de minuto 
+                    con todo ilimitado y totalmente gratis.
+                </p>
+            </article>
+            <form 
+                method="POST"  
+                class="flex flex-col justify-center gap-6 w-full">
+                {% for input in inputs %}
+                    {{ input_component(input.type, input.placeholder, input.name, input.color) }}
+                {% endfor %}
+                <div class="flex w-full justify-end">
+                    {{ button_component("Unete 🚀") }}
+                </div>
+            </form>
+        </section>
+    </main>
+{% endblock %}

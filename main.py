@@ -1,11 +1,16 @@
-from flask import Flask, render_template
+from flask import render_template, jsonify
 import os
+from app import app #app FLASK
+from src.routes.auth import auth_bp
+from src.database.connection import db
 
-app = Flask(
-    __name__, 
-    template_folder="./src/templates",
-    static_folder="./src/static"
-)
+
+with app.app_context():
+    from src.models.users import User
+    db.create_all()
+
+app.register_blueprint(auth_bp)
+
 
 @app.route("/")
 def index ():
