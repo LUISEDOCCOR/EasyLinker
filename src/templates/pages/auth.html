@@ -1,8 +1,8 @@
-{% extends '/Layout.html' %}
+{% extends 'Layout.html' %}
 
-{% from '/components/input.html' import input_component %}
-{% from '/components/button.html' import button_component   %}
-{% from '/components/alert.html' import alert_component %}
+{% from 'components/input.html' import input_component %}
+{% from 'components/button.html' import button_component   %}
+{% from 'components/alert.html' import alert_component %}
 
 {% block slot %}
     <main class="min-h-screen w-full flex flex-col justify-center items-center">
@@ -19,7 +19,7 @@
             </article>
             <form 
                 method="POST"  
-                class="flex flex-col justify-center gap-6 w-full">
+                class="flex flex-col justify-center gap-8 w-full">
                 {% for input in inputs %}
                     {{ input_component(input.type, input.placeholder, input.name, input.color) }}
                 {% endfor %}
@@ -27,6 +27,14 @@
                     {{ button_component("Unete 🚀") }}
                 </div>
             </form>
+            <div class="flex justify-center">
+                <a 
+                    href="{{ url_for(bottomLink) }}" 
+                    class="text-xl font-semibold" 
+                >
+                    {{ bottomMessage }}
+                </a>
+            </div>
         </section>
     </main>
 {% endblock %}

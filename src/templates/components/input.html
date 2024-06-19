@@ -1,5 +1,6 @@
 {% macro input_component(type, placeholder, name, color) %}
-    <input 
+    <input
+    aria-label="input for {{ placeholder }}" 
     class="outline-none w-full text-3xl font-semibold
     px-4 py-4 shadow-[10px_10px_0px_rgba(0,0,0,1)]"
     type="{{ type }}"
