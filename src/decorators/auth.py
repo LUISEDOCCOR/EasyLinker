@@ -1,20 +1,24 @@
-from flask import session, redirect
+from flask import session, redirect, url_for
 from functools import wraps
 
-def unauthenticated_only (f):
+
+def unauthenticated_only(f):
     @wraps(f)
-    def wrapper (*args, **kwards):
+    def wrapper(*args, **kwards):
         if "user" in session:
-            return redirect("/dashboard")
+            return redirect(url_for("dashboard.home"))
         else:
             return f(*args, **kwards)
+
     return wrapper
 
-def authenticated_only (f):
+
+def authenticated_only(f):
     @wraps(f)
-    def wrapper (*args, **kwards):
+    def wrapper(*args, **kwards):
         if "user" not in session:
-            return redirect("/")
+            return redirect(url_for("index"))
         else:
             return f(*args, **kwards)
+
     return wrapper

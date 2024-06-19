@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, session, jsonify
+from flask import Blueprint, render_template, request, redirect, session, url_for
 from src.database.connection import db
 from src.models.users import User
 from src.lib.bcrypt import createPassword, chechPassword
@@ -41,7 +41,7 @@ def signup():
                     "id": user.id,
                 }
 
-                return redirect("/dashboard")
+                return redirect(url_for('dashboard.home'))
             else:
                 error = "El correo ya existe"
         else:
@@ -101,9 +101,9 @@ def login():
                         "email": user.email,
                         "id": user.id,
                     }
-                    return redirect("/dashboard")
+                    return redirect(url_for('dashboard.home'))
                 else:
-                    error = "El usuario no existe"
+                    error = "La contraseña es incorrecta"
 
             else:
                 error = "El usuario no existe"
@@ -136,4 +136,4 @@ def login():
 @auth_bp.route("/logout")
 def logout():
     session.pop("user", None)
-    return redirect("/")
+    return redirect(url_for('index'))
