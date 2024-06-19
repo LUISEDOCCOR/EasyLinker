@@ -1,5 +1,6 @@
 .env
 *.http
-/__pycache__
 /env
 /node_modules
+**__pycache__
+**/*.pyc
