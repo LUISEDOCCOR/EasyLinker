@@ -1,13 +1,55 @@
 {% extends 'Layout.html' %}
+{% from '/components/dashboardItem.html' import dashboardItem_component   %}
+{% from '/components/link.html' import link_component   %}
 
 {% block slot %}
-    <main class="min-h-screen w-full flex flex-col justify-center items-center gap-8">
-        <h1 class="text-5xl font-semibold">Hola {{ username }}</h1>
-        <a 
-            class="text-2xl font-semibold outline-dashed px-2 py-2" 
-            href="{{ url_for('auth.logout' ) }}"
-        >
-            Salir
-        </a>
+    <main 
+        class="min-h-screen w-full flex flex-col 
+        justify-center items-center gap-6 bg-pastelBlue p-12"        
+    >
+        <section class="flex w-full justify-start">
+            <h2 class="text-3xl font-semibold">Visitas</h2>
+        </section>
+        <section class="w-full grid gap-5 min-h-[80svh] grid-cols-1 grid-row-0 xl:grid-cols-4 xl:grid-rows-2">
+            <!-- 24hrs -->
+           {{ dashboardItem_component(value=200, color="bg-pastelGreen", time="24hrs")}}
+            <!-- 7days -->
+            {{ dashboardItem_component(value=500, color="bg-pastelYellow", time="7días") }}
+            <!-- 30days -->
+            {{ dashboardItem_component(value=20000, color="bg-pastelRed", time="30días") }}
+            <!-- Profile and buttons -->
+            <article class="bg-pastelPink p-4 row-span-2 border-4 border-black">
+            </article>
+            <!-- Your pages -->
+            <article 
+                class="bg-pastelOrange p-4 border-4 md:col-span-1 xl:col-span-3 
+                border-black grid md:grid-cols-1 xl:grid-cols-2 overflow-hidden"
+            >
+                <div class="flex gap-4 col-span-1 mt-8 md:justify-center xl:justify-start">
+                    <img 
+                        src="https://ui-avatars.com/api/?name={{session['user']['name']}}&background=FFFF00&rounded=true&bold=true" 
+                        alt="profile image {{session['user']['name']}}"
+                        class="w-24 h-24 border-4 border-black rounded-full"
+                    >
+                    <div class="space-y-2">
+                        <h1 
+                            class="text-4xl font-semibold"
+                        >
+                            Hola {{session["user"]["name"]}}
+                        </h1>
+                        <h2 
+                            class="text-2xl"
+                        >
+                            {{session["user"]["email"]}}
+                        </h2>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-12 w-full md:mt-12 xl:mt-0">
+                    {{ link_component(label="Crear una página", color="bg-pastelGreen", href="/") }}
+                    {{ link_component(label="Cerrar sesión", color="bg-pastelPink", href="/") }}
+                    {{ link_component(label="Buy me a coffe", color="bg-pastelBlue", href="/") }}
+                </div>
+            </article>
+        </section>
     </main>
 {% endblock %}

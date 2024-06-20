@@ -53,19 +53,16 @@ def signup():
             "name": "username",
             "placeholder": "Nombre",
             "type": "text",
-            "color": "pastelPink",
         },
         {
             "name": "email",
             "placeholder": "Correo",
             "type": "email",
-            "color": "pastelOrange",
         },
         {
             "name": "password",
             "placeholder": "Contraseña",
             "type": "text",
-            "color": "pastelBlue",
         },
     ]
     return render_template(
@@ -115,13 +112,11 @@ def login():
             "name": "email",
             "placeholder": "Correo",
             "type": "email",
-            "color": "pastelOrange",
         },
         {
             "name": "password",
             "placeholder": "Contraseña",
             "type": "text",
-            "color": "pastelBlue",
         },
     ]
     return render_template(

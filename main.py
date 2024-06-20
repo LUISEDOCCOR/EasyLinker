@@ -9,6 +9,7 @@ from src.decorators.auth import unauthenticated_only
 
 with app.app_context():
     from src.models.users import User
+    from src.models.pages import Page
     db.create_all()
 
 app.register_blueprint(auth_bp)

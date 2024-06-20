@@ -1,0 +1,6 @@
+{% macro link_component(label, color, href) %}
+    <a href="{{ href }}" class="text-3xl font-medium w-full max-w-xl text-center py-3 {{ color }}
+    border-2 border-black hover:scale-110 transition-transform">
+        {{ label }}
+    </a>
+{% endmacro %}

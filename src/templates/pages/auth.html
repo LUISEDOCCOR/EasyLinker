@@ -5,7 +5,7 @@
 {% from 'components/alert.html' import alert_component %}
 
 {% block slot %}
-    <main class="min-h-screen w-full flex flex-col justify-center items-center">
+    <main class="min-h-screen w-full flex flex-col justify-center items-center bg-pastelPink">
         {% if error %}
             {{ alert_component(error) }}
         {% endif %}
@@ -24,7 +24,7 @@
                     {{ input_component(input.type, input.placeholder, input.name, input.color) }}
                 {% endfor %}
                 <div class="flex w-full justify-end">
-                    {{ button_component("Unete 🚀") }}
+                    {{ button_component(label="Unete 🚀", color="bg-pastelYellow") }}
                 </div>
             </form>
             <div class="flex justify-center">

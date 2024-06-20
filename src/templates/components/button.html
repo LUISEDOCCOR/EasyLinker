@@ -1,6 +1,6 @@
-{% macro button_component(label) %}
-    <button class="text-3xl font-bold px-8 py-5 bg-pastelYellow
-     shadow-[7px_7px_0px_rgba(0,0,0,1)]">
+{% macro button_component(label, color) %}
+    <button class="text-2xl font-semibold px-6 py-4 {{ color }}
+    border-4 border-black">
         {{ label }}
     </button>
 {% endmacro %}

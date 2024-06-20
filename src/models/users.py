@@ -1,6 +1,4 @@
 from src.database.connection import db
-from flask_bcrypt import Bcrypt
-
 class User (db.Model):
     __tablename__ = "users"
 
